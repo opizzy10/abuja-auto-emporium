@@ -5,27 +5,27 @@ import ThemeToggle from "@/components/ThemeToggle";
 
 const Header = () => {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 border-b border-border">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center gap-3">
             <div className="text-2xl font-serif font-bold">
-              <span className="text-primary">Abuja</span>
-              <span className="text-foreground"> Cars</span>
+              <span className="text-primary">ABUJA</span>
+              <span className="text-foreground"> CARS</span>
             </div>
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
-            <Link to="/" className="text-sm font-medium transition-colors hover:text-primary">
+            <Link to="/" className="text-sm font-bold tracking-wide transition-colors hover:text-primary uppercase">
               Home
             </Link>
-            <Link to="/inventory" className="text-sm font-medium transition-colors hover:text-primary">
+            <Link to="/inventory" className="text-sm font-bold tracking-wide transition-colors hover:text-primary uppercase">
               Inventory
             </Link>
-            <Link to="/about" className="text-sm font-medium transition-colors hover:text-primary">
+            <Link to="/about" className="text-sm font-bold tracking-wide transition-colors hover:text-primary uppercase">
               About
             </Link>
-            <Link to="/contact" className="text-sm font-medium transition-colors hover:text-primary">
+            <Link to="/contact" className="text-sm font-bold tracking-wide transition-colors hover:text-primary uppercase">
               Contact
             </Link>
           </nav>

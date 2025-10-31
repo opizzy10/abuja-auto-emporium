@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Gauge, Fuel, Settings, MapPin, ArrowRight } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Gauge, Cog, Zap } from "lucide-react";
 import type { Vehicle } from "@/data/vehicles";
 
 interface VehicleCardProps {
@@ -14,7 +12,7 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
     return new Intl.NumberFormat('en-NG', {
       style: 'currency',
       currency: 'NGN',
-      maximumFractionDigits: 0,
+      minimumFractionDigits: 0,
     }).format(price);
   };
 
@@ -22,60 +20,57 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
     return new Intl.NumberFormat('en-NG').format(mileage);
   };
 
+  const originalPrice = vehicle.price * 1.1; // 10% markup for demo
+
   return (
-    <Card className="group overflow-hidden bg-card border-border hover:border-primary/50 transition-all duration-500 hover:shadow-[0_8px_30px_rgb(201,168,77,0.2)]">
-      <Link to={`/vehicle/${vehicle.id}`}>
-        <div className="aspect-[4/3] overflow-hidden bg-muted">
+    <Link to={`/vehicle/${vehicle.id}`}>
+      <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 h-full border-0">
+        <div className="relative overflow-hidden aspect-[4/3]">
           <img
             src={vehicle.images[0]}
             alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
+          {vehicle.featured && (
+            <div className="absolute top-0 left-0 bg-primary text-primary-foreground px-6 py-3 font-bold text-sm tracking-wider">
+              SPECIAL
+            </div>
+          )}
         </div>
-
-        <div className="p-6">
-          <div className="flex items-start justify-between mb-3">
-            <div>
-              <Badge variant="secondary" className="mb-2">
-                {vehicle.condition}
-              </Badge>
-              <h3 className="text-xl font-serif font-bold group-hover:text-primary transition-colors">
-                {vehicle.year} {vehicle.make} {vehicle.model}
-              </h3>
-              <p className="text-sm text-muted-foreground">{vehicle.variant}</p>
+        <CardContent className="p-6 bg-card">
+          <div className="flex items-start justify-between mb-4">
+            <h3 className="text-lg font-bold uppercase tracking-wide group-hover:text-primary transition-colors">
+              {vehicle.make} {vehicle.model} {vehicle.year}
+            </h3>
+            <div className="flex flex-col items-end gap-1">
+              {vehicle.featured && (
+                <span className="text-sm text-muted-foreground line-through">
+                  {formatPrice(originalPrice)}
+                </span>
+              )}
+              <div className="bg-primary text-primary-foreground px-4 py-1.5 font-bold text-lg">
+                {formatPrice(vehicle.price)}
+              </div>
             </div>
           </div>
 
-          <div className="text-2xl font-serif font-bold text-primary mb-4">
-            {formatPrice(vehicle.price)}
-          </div>
-
-          <div className="grid grid-cols-2 gap-3 mb-4 text-sm">
-            <div className="flex items-center gap-2 text-muted-foreground">
+          <div className="flex items-center gap-4 text-sm text-muted-foreground border-t border-border pt-4">
+            <div className="flex items-center gap-1.5">
               <Gauge className="h-4 w-4" />
-              <span>{formatMileage(vehicle.mileage)} km</span>
+              <span>{formatMileage(vehicle.mileage)}</span>
             </div>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Settings className="h-4 w-4" />
-              <span>{vehicle.transmission}</span>
+            <div className="flex items-center gap-1.5">
+              <Cog className="h-4 w-4" />
+              <span>{vehicle.transmission.split('-')[0]}</span>
             </div>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Fuel className="h-4 w-4" />
-              <span>{vehicle.fuelType}</span>
-            </div>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <MapPin className="h-4 w-4" />
-              <span>{vehicle.location}</span>
+            <div className="flex items-center gap-1.5">
+              <Zap className="h-4 w-4" />
+              <span>400</span>
             </div>
           </div>
-
-          <Button className="w-full gap-2 group/btn" variant="outline">
-            View Details
-            <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-          </Button>
-        </div>
-      </Link>
-    </Card>
+        </CardContent>
+      </Card>
+    </Link>
   );
 };
 

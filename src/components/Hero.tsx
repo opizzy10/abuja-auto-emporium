@@ -1,58 +1,71 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import heroImage from "@/assets/hero-car.jpg";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-background">
+      {/* Full-screen clear background image */}
       <div
-        className="absolute inset-0 bg-cover bg-center opacity-40 dark:opacity-30"
+        className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage: `url(${heroImage})`,
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/60" />
 
       <div className="container mx-auto px-4 py-32 relative z-10">
-        <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 mb-6 px-5 py-2.5 bg-primary/10 dark:bg-primary/20 border border-primary/30 rounded-full">
-            <span className="text-sm font-semibold text-primary">Nigeria's Premier Luxury Dealership</span>
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-6 leading-[1.1] text-foreground">
-            Luxury Vehicles for{" "}
-            <span className="text-primary bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">Nigeria's Elite</span>
-          </h1>
-          
-          <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed">
-            Certified pre-owned and brand new luxury vehicles. Professional inspection, flexible financing, and delivery across Nigeria.
-          </p>
+        <div className="flex items-center justify-between">
+          {/* Left side - can add additional content if needed */}
+          <div className="flex-1"></div>
 
-          <div className="flex flex-wrap gap-4 mb-16">
-            <Button size="lg" className="gap-2 text-base h-14 px-8" asChild>
-              <Link to="/inventory">
-                Browse Inventory
-                <ArrowRight className="h-5 w-5" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="h-14 px-8" asChild>
-              <Link to="/contact">Book Inspection</Link>
-            </Button>
+          {/* Right side - Circular promo badge */}
+          <div className="relative">
+            <div className="w-[400px] h-[400px] rounded-full bg-primary/90 backdrop-blur-sm flex flex-col items-center justify-center text-center p-12 shadow-2xl">
+              <div className="space-y-4">
+                <h2 className="text-xl font-bold text-primary-foreground tracking-wider">
+                  NEW 2024
+                </h2>
+                <h1 className="text-3xl font-serif font-bold text-primary-foreground leading-tight">
+                  MERCEDES-BENZ<br />G63 AMG
+                </h1>
+                <div className="space-y-2">
+                  <div className="flex items-baseline justify-center gap-2">
+                    <span className="text-5xl font-bold text-primary-foreground">₦</span>
+                    <span className="text-7xl font-bold text-primary-foreground">185M</span>
+                    <div className="flex flex-col items-start">
+                      <span className="text-2xl font-bold text-primary-foreground">/MO</span>
+                      <span className="text-sm text-primary-foreground/80">FOR 36 MONTH</span>
+                    </div>
+                  </div>
+                </div>
+                <Button 
+                  size="lg" 
+                  className="mt-6 bg-blue-600 hover:bg-blue-700 text-white px-8 py-6 text-lg font-bold"
+                  asChild
+                >
+                  <Link to="/inventory">LEARN MORE</Link>
+                </Button>
+              </div>
+            </div>
           </div>
+        </div>
 
-          <div className="grid grid-cols-3 gap-8 pt-10 border-t border-border">
-            <div className="text-center md:text-left">
-              <div className="text-4xl md:text-5xl font-serif font-bold text-primary mb-2">500+</div>
-              <div className="text-sm md:text-base text-muted-foreground font-medium">Cars Sold</div>
-            </div>
-            <div className="text-center md:text-left">
-              <div className="text-4xl md:text-5xl font-serif font-bold text-primary mb-2">12+</div>
-              <div className="text-sm md:text-base text-muted-foreground font-medium">Years Experience</div>
-            </div>
-            <div className="text-center md:text-left">
-              <div className="text-4xl md:text-5xl font-serif font-bold text-primary mb-2">98%</div>
-              <div className="text-sm md:text-base text-muted-foreground font-medium">Satisfaction</div>
+        {/* Bottom stats - positioned at bottom */}
+        <div className="absolute bottom-16 left-4 right-4">
+          <div className="container mx-auto">
+            <div className="grid grid-cols-3 gap-8 max-w-2xl">
+              <div className="text-center md:text-left bg-background/80 backdrop-blur-sm p-4 rounded-lg">
+                <div className="text-4xl md:text-5xl font-serif font-bold text-primary mb-2">500+</div>
+                <div className="text-sm md:text-base text-foreground font-medium">Cars Sold</div>
+              </div>
+              <div className="text-center md:text-left bg-background/80 backdrop-blur-sm p-4 rounded-lg">
+                <div className="text-4xl md:text-5xl font-serif font-bold text-primary mb-2">12+</div>
+                <div className="text-sm md:text-base text-foreground font-medium">Years Experience</div>
+              </div>
+              <div className="text-center md:text-left bg-background/80 backdrop-blur-sm p-4 rounded-lg">
+                <div className="text-4xl md:text-5xl font-serif font-bold text-primary mb-2">98%</div>
+                <div className="text-sm md:text-base text-foreground font-medium">Satisfaction</div>
+              </div>
             </div>
           </div>
         </div>
