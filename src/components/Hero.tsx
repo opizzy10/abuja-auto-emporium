@@ -13,14 +13,11 @@ const Hero = () => {
         }}
       />
 
-      <div className="container mx-auto px-4 py-32 relative z-10">
-        <div className="flex items-center justify-between">
-          {/* Left side - can add additional content if needed */}
-          <div className="flex-1"></div>
-
-          {/* Right side - Circular promo badge */}
-          <div className="relative">
-            <div className="w-[400px] h-[400px] rounded-full bg-primary/90 backdrop-blur-sm flex flex-col items-center justify-center text-center p-12 shadow-2xl">
+      <div className="container mx-auto px-4 py-16 md:py-32 relative z-10">
+        <div className="flex items-center justify-center md:justify-end">
+          {/* Circular promo badge - hidden on mobile, visible on larger screens */}
+          <div className="relative hidden md:block">
+            <div className="w-[350px] h-[350px] lg:w-[400px] lg:h-[400px] rounded-full bg-primary/90 backdrop-blur-sm flex flex-col items-center justify-center text-center p-12 shadow-2xl">
               <div className="space-y-4">
                 <h2 className="text-xl font-bold text-primary-foreground tracking-wider">
                   NEW 2024
@@ -47,6 +44,20 @@ const Hero = () => {
                 </Button>
               </div>
             </div>
+          </div>
+
+          {/* Mobile CTA - visible only on mobile */}
+          <div className="md:hidden text-center">
+            <h1 className="text-4xl font-serif font-bold text-white mb-6 drop-shadow-lg">
+              Premium Luxury Vehicles
+            </h1>
+            <Button 
+              size="lg" 
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg font-bold"
+              asChild
+            >
+              <Link to="/inventory">Browse Collection</Link>
+            </Button>
           </div>
         </div>
 
