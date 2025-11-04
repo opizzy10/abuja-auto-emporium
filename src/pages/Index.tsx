@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
@@ -8,15 +9,20 @@ import { vehicles } from "@/data/vehicles";
 const Index = () => {
   const featuredVehicles = vehicles.filter(v => v.featured);
 
+  const handleFilterChange = (filters: { make: string; minPrice: string; maxPrice: string }) => {
+    // For homepage, we can optionally redirect to inventory page with filters
+    console.log("Filters applied:", filters);
+  };
+
   return (
     <div className="min-h-screen">
       <Header />
       <Hero />
 
-      {/* Search Section */}
-      <section className="py-12 -mt-24 relative z-20">
+      {/* Search Section - Hidden on mobile */}
+      <section className="py-12 -mt-24 relative z-20 hidden md:block">
         <div className="container mx-auto px-4">
-          <SearchFilters />
+          <SearchFilters onFilterChange={handleFilterChange} />
         </div>
       </section>
 

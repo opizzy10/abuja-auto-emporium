@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Phone, MessageCircle } from "lucide-react";
+import { Phone, MessageCircle, User } from "lucide-react";
 import ThemeToggle from "@/components/ThemeToggle";
+import logo from "@/assets/logo.jpg";
 
 const Header = () => {
   return (
@@ -9,6 +10,7 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <Link to="/" className="flex items-center gap-3">
+            <img src={logo} alt="Abuja Cars Logo" className="h-12 w-12 rounded-full object-cover" />
             <div className="text-2xl font-serif font-bold">
               <span className="text-primary">ABUJA</span>
               <span className="text-foreground"> CARS</span>
@@ -32,6 +34,12 @@ const Header = () => {
 
           <div className="flex items-center gap-3">
             <ThemeToggle />
+            <Button variant="outline" size="sm" className="gap-2" asChild>
+              <Link to="/auth">
+                <User className="h-4 w-4" />
+                <span className="hidden sm:inline">Login</span>
+              </Link>
+            </Button>
             <Button
               variant="outline"
               size="sm"

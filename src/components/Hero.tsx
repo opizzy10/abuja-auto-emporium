@@ -15,7 +15,7 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 py-16 md:py-32 relative z-10">
         <div className="flex items-center justify-center md:justify-end">
-          {/* Circular promo badge - hidden on mobile, visible on larger screens */}
+          {/* Circular promo badge - visible on larger screens only */}
           <div className="relative hidden md:block">
             <div className="w-[350px] h-[350px] lg:w-[400px] lg:h-[400px] rounded-full bg-primary/90 backdrop-blur-sm flex flex-col items-center justify-center text-center p-12 shadow-2xl">
               <div className="space-y-4">
@@ -45,24 +45,10 @@ const Hero = () => {
               </div>
             </div>
           </div>
-
-          {/* Mobile CTA - visible only on mobile */}
-          <div className="md:hidden text-center">
-            <h1 className="text-4xl font-serif font-bold text-white mb-6 drop-shadow-lg">
-              Premium Luxury Vehicles
-            </h1>
-            <Button 
-              size="lg" 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-6 text-lg font-bold"
-              asChild
-            >
-              <Link to="/inventory">Browse Collection</Link>
-            </Button>
-          </div>
         </div>
 
-        {/* Bottom stats - positioned at bottom */}
-        <div className="absolute bottom-16 left-4 right-4">
+        {/* Bottom stats - hidden on mobile, visible on larger screens */}
+        <div className="absolute bottom-16 left-4 right-4 hidden md:block">
           <div className="container mx-auto">
             <div className="grid grid-cols-3 gap-8 max-w-2xl">
               <div className="text-center md:text-left bg-background/80 backdrop-blur-sm p-4 rounded-lg">

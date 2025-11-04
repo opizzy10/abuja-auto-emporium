@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import VehicleCard from "@/components/VehicleCard";
@@ -5,6 +6,28 @@ import SearchFilters from "@/components/SearchFilters";
 import { vehicles } from "@/data/vehicles";
 
 const Inventory = () => {
+  const [filteredVehicles, setFilteredVehicles] = useState(vehicles);
+
+  const handleFilterChange = (filters: { make: string; minPrice: string; maxPrice: string }) => {
+    let filtered = [...vehicles];
+
+    if (filters.make && filters.make !== "all") {
+      filtered = filtered.filter(v => 
+        v.make.toLowerCase().includes(filters.make.toLowerCase())
+      );
+    }
+
+    if (filters.minPrice) {
+      filtered = filtered.filter(v => v.price >= parseInt(filters.minPrice));
+    }
+
+    if (filters.maxPrice) {
+      filtered = filtered.filter(v => v.price <= parseInt(filters.maxPrice));
+    }
+
+    setFilteredVehicles(filtered);
+  };
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -19,7 +42,7 @@ const Inventory = () => {
               Browse our curated selection of luxury vehicles. Each car is carefully selected and inspected to meet our premium standards.
             </p>
           </div>
-          <SearchFilters />
+          <SearchFilters onFilterChange={handleFilterChange} />
         </div>
       </section>
 
@@ -27,15 +50,21 @@ const Inventory = () => {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-6">
             <p className="text-muted-foreground">
-              Showing {vehicles.length} vehicles
+              Showing {filteredVehicles.length} vehicles
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {vehicles.map((vehicle) => (
-              <VehicleCard key={vehicle.id} vehicle={vehicle} />
-            ))}
-          </div>
+          {filteredVehicles.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredVehicles.map((vehicle) => (
+                <VehicleCard key={vehicle.id} vehicle={vehicle} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <p className="text-xl text-muted-foreground">No vehicles found matching your criteria</p>
+            </div>
+          )}
         </div>
       </section>
 
