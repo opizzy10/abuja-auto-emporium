@@ -95,6 +95,16 @@ const Footer = () => {
                 <Youtube className="h-5 w-5" />
               </a>
             </div>
+            <div className="mt-4">
+              <a
+                href="https://wa.me/2347059710469"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+              >
+                WhatsApp: +234 705 971 0469
+              </a>
+            </div>
           </div>
         </div>
 
